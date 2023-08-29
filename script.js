@@ -1,7 +1,5 @@
 const playerContainer = document.getElementById('all-players-container');
 const newPlayerFormContainer = document.getElementById('new-player-form');
-const body = document.getElementById("body");
-const formCard = document.getElementById("new-player-form");
 
 // Add your cohort name to the cohortName variable below, replacing the 'COHORT-NAME' placeholder
 const cohortName = '2305-FTB-PT-WEB-PT-AM';
@@ -21,7 +19,6 @@ const fetchAllPlayers = async () => {
     }
 };
 
-//Aquire single Puppy by Id from API
 const fetchSinglePlayer = async (playerId) => {
     try {
       const response = await fetch(PLAYERS_URL);
@@ -45,7 +42,6 @@ const fetchSinglePlayer = async (playerId) => {
     }
   };
 
-// POST New Player/Puppy to API
 const addNewPlayer = async (playerObj) => {
     try {
         const response = await fetch(PLAYERS_URL,
@@ -65,7 +61,6 @@ const addNewPlayer = async (playerObj) => {
     }
 };
 
-// DELETE selected Puppy by Id from API
 const removePlayer = async (playerId) => {
     try {
         const response = await fetch(`${PLAYERS_URL}/${playerId}`, 
@@ -123,7 +118,6 @@ const renderNewPlayerForm = () => {
 
             let playerObj = {
                 name: name,
-                // id: id,
                 breed: breed,
                 status: status,
                 imageUrl: imageUrl,
@@ -230,21 +224,10 @@ const renderAllPlayers = (players) => {
     } catch (error) {
         console.error('Uh oh, trouble rendering players!', error);
     }
-};
-
-
-// Media query function
-function mediaQueryCheck(x) {
-    if (x.matches) {
-        newPlayerFormContainer.style.width = "90%";
-
-    //   document.body.style.backgroundColor = "red";
-    //   formCard.style.margin = "20px 32%";
     }
   };
   var x = window.matchMedia("(max-width: 490px)");
 
-// Initialise the page
 const init = async () => {
     mediaQueryCheck(x);
     renderNewPlayerForm();
